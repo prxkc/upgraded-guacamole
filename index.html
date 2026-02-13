@@ -555,123 +555,136 @@
 
     .calc-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-      gap: 20px;
-      align-items: end;
-      margin-bottom: 30px;
+      gap: 0;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(93, 173, 127, 0.18);
     }
 
-    .calc-input-group {
-      position: relative;
-      min-width: 0;
-    }
-
-    .calc-label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .calc-input-wrapper {
-      position: relative;
+    .calc-currency-row {
       display: flex;
-      width: 100%;
-      min-width: 0;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(214, 58, 77, 0.28);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.3s ease;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
     }
 
-    .calc-input-wrapper:focus-within {
-      border-color: var(--brand-green);
+    .currency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .flag {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(10, 37, 26, 0.14);
+    }
+
+    .flag-us {
+      background: repeating-linear-gradient(
+        to bottom,
+        #b31942 0%,
+        #b31942 12.5%,
+        #ffffff 12.5%,
+        #ffffff 25%
+      );
+    }
+
+    .flag-us::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 54%;
+      height: 56%;
+      background: #0a3161;
+    }
+
+    .flag-us::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow:
+        4px 0 rgba(255, 255, 255, 0.9),
+        8px 0 rgba(255, 255, 255, 0.9),
+        0 4px rgba(255, 255, 255, 0.9),
+        4px 4px rgba(255, 255, 255, 0.9),
+        8px 4px rgba(255, 255, 255, 0.9);
+    }
+
+    .flag-bd {
+      background: #006a4e;
+    }
+
+    .flag-bd::before {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #f42a41;
+      top: 50%;
+      left: 56%;
+      transform: translate(-50%, -50%);
     }
 
     .calc-input {
-      flex: 1;
+      width: min(62%, 300px);
       min-width: 0;
-      width: 100%;
-      padding: 14px 14px;
-      background: transparent;
+      padding: 0;
       border: none;
+      background: transparent;
       font-family: var(--font-display);
-      font-size: 1.45rem;
+      font-size: clamp(1.55rem, 2.7vw, 2.05rem);
       font-weight: 800;
       color: var(--text-primary);
+      text-align: right;
       outline: none;
     }
 
-    .calc-select {
-      flex: 0 0 auto;
-      min-width: 78px;
-      max-width: 100%;
-      padding: 14px 10px;
-      background: rgba(128, 195, 152, 0.12);
-      border: none;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--brand-green);
-      cursor: pointer;
-      outline: none;
-    }
-
-    .calc-exchange-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: var(--brand-green);
-      border-radius: 50%;
-      font-size: 1.5rem;
-      color: #ffffff;
-      margin-bottom: 8px;
-      animation: rotate 10s linear infinite;
-    }
-
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .calc-result {
-      padding: 20px;
-      background: rgba(128, 195, 152, 0.06);
-      border: 1px solid rgba(214, 58, 77, 0.24);
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-
-    .calc-result-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .calc-result-value {
+    .calc-output {
+      width: min(62%, 300px);
+      min-width: 0;
       font-family: var(--font-display);
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--brand-green);
+      font-size: clamp(1.55rem, 2.7vw, 2.05rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+      text-align: right;
+    }
+
+    .calc-input::-webkit-outer-spin-button,
+    .calc-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
 
     .calc-details {
       display: grid;
-      gap: 12px;
+      gap: 6px;
     }
 
     .calc-detail-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(214, 58, 77, 0.12);
+      padding: 6px 0;
       font-size: 0.9rem;
     }
 
@@ -748,7 +761,7 @@
 
     /* Cards showcase section */
     .cards-section {
-      padding: 44px 0 96px;
+      padding: 115px 0 96px;
       background: transparent;
     }
 
@@ -760,30 +773,29 @@
 
     .card-item {
       border-radius: 24px;
-      padding: 24px 18px 20px;
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(93, 173, 127, 0.16);
-      transition: transform 0.35s ease, border-color 0.35s ease;
+      padding: 8px 8px 10px;
+      background: transparent;
+      border: none;
+      transition: transform 0.35s ease;
       text-align: center;
     }
 
     .card-item:hover {
-      transform: translateY(-6px);
-      border-color: rgba(93, 173, 127, 0.35);
+      transform: translateY(-5px);
     }
 
     .card-visual {
-      min-height: 160px;
+      min-height: 210px;
       display: grid;
       place-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .card-visual img {
-      max-width: 94%;
-      max-height: 170px;
+      max-width: 100%;
+      max-height: 230px;
       object-fit: contain;
-      filter: drop-shadow(0 12px 24px rgba(31, 74, 52, 0.18));
+      filter: drop-shadow(0 14px 28px rgba(31, 74, 52, 0.2));
     }
 
     .card-item h3 {
@@ -1167,6 +1179,9 @@
       background: #10251a;
       color: #bfe8ca;
       border-color: #10251a;
+      padding: 16px 44px;
+      font-size: 1.08rem;
+      font-weight: 800;
     }
 
     .btn-cta:hover {
@@ -1327,13 +1342,9 @@
     }
 
     @media (max-width: 1280px) {
-      .calc-row {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      .calc-exchange-icon {
-        margin: 0 auto;
+      .calc-input,
+      .calc-output {
+        width: min(58%, 250px);
       }
     }
 
@@ -1349,6 +1360,12 @@
 
       .hero-title {
         font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .calc-input,
+      .calc-output {
+        width: 56%;
+        font-size: 1.35rem;
       }
 
       .partners-grid {
@@ -1443,37 +1460,21 @@
               </div>
 
               <div class="calc-row">
-                <div class="calc-input-group">
-                  <label class="calc-label">You send</label>
-                  <div class="calc-input-wrapper">
-                    <input type="number" id="sendAmount" class="calc-input" value="500" min="0" step="10" />
-                    <select id="fromCurrency" class="calc-select">
-                      <option value="USD">USD</option>
-                      <option value="EUR">EUR</option>
-                      <option value="GBP">GBP</option>
-                    </select>
+                <div class="calc-currency-row">
+                  <div class="currency-badge">
+                    <span class="flag flag-us" aria-hidden="true"></span>
+                    <span>USD</span>
                   </div>
+                  <input type="number" id="sendAmount" class="calc-input" value="1" min="0" step="1" />
                 </div>
 
-                <div class="calc-exchange-icon">⇄</div>
-
-                <div class="calc-input-group">
-                  <label class="calc-label">They receive</label>
-                  <div class="calc-input-wrapper">
-                    <select id="toCurrency" class="calc-select">
-                      <option value="BDT">BDT</option>
-                      <option value="INR">INR</option>
-                      <option value="PKR">PKR</option>
-                      <option value="PHP">PHP</option>
-                      <option value="NPR">NPR</option>
-                    </select>
+                <div class="calc-currency-row">
+                  <div class="currency-badge">
+                    <span class="flag flag-bd" aria-hidden="true"></span>
+                    <span>BDT</span>
                   </div>
+                  <div class="calc-output" id="receiveAmount">0.00</div>
                 </div>
-              </div>
-
-              <div class="calc-result">
-                <div class="calc-result-label">Recipient gets</div>
-                <div class="calc-result-value" id="receiveAmount">0.00 BDT</div>
               </div>
 
               <div class="calc-details">
@@ -1770,14 +1771,14 @@
 
     // Calculator functions
     const sendAmountEl = document.getElementById("sendAmount");
-    const fromCurrencyEl = document.getElementById("fromCurrency");
-    const toCurrencyEl = document.getElementById("toCurrency");
     const receiveAmountEl = document.getElementById("receiveAmount");
     const feeValueEl = document.getElementById("feeValue");
     const arrivalValueEl = document.getElementById("arrivalValue");
     const savingsValueEl = document.getElementById("savingsValue");
     const rateTextEl = document.getElementById("rateText");
     const quoteTimestampEl = document.getElementById("quoteTimestamp");
+    const sourceCurrencyCode = "USD";
+    const targetCurrencyCode = "BDT";
 
     function formatAmount(value, code) {
       return new Intl.NumberFormat("en-US", {
@@ -1814,27 +1815,26 @@
     }
 
     function updateQuote() {
-      const from = fromCurrencyEl.value;
-      const to = toCurrencyEl.value;
       const sendAmount = Math.max(0, Number(sendAmountEl.value) || 0);
 
-      const rate = computeRate(from, to);
-      const fee = computeFee(sendAmount, from);
-      const receiveAmount = Math.max(0, sendAmount - fee) * rate;
+      const rate = computeRate(sourceCurrencyCode, targetCurrencyCode);
+      const fee = computeFee(sendAmount, sourceCurrencyCode);
+      const receiveAmount = sendAmount * rate;
       const savings = Math.max(0.4, fee * 0.24);
 
-      rateTextEl.textContent = `Rate: 1 ${from} = ${rate.toFixed(2)} ${to}`;
-      receiveAmountEl.textContent = formatAmount(receiveAmount, to);
-      feeValueEl.textContent = formatAmount(fee, from);
+      rateTextEl.textContent = `Rate: 1 ${sourceCurrencyCode} = ${rate.toFixed(2)} ${targetCurrencyCode}`;
+      receiveAmountEl.textContent = new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(receiveAmount);
+      feeValueEl.textContent = formatAmount(fee, sourceCurrencyCode);
       arrivalValueEl.textContent = getArrival(sendAmount);
-      savingsValueEl.textContent = formatAmount(savings, from);
+      savingsValueEl.textContent = formatAmount(savings, sourceCurrencyCode);
 
       updateTimestamp();
     }
 
     sendAmountEl.addEventListener("input", updateQuote);
-    fromCurrencyEl.addEventListener("change", updateQuote);
-    toCurrencyEl.addEventListener("change", updateQuote);
 
     // Scroll animations
     const revealElements = document.querySelectorAll(".reveal");
